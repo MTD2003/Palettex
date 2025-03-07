@@ -1,0 +1,21 @@
+TODO for HTML & CSS
+- palettes.html: Do the layout. Would look similar to https://www.blockpalettes.com/.
+- footer.html: Finish the layout. Legal disclaimer + link to mcassets.
+- about.html: Lowest priority in assignment.
+
+TODO for JavaScript & jQuery
+- Implement the generate button.
+- Implement the lock buttons above each texture.
+- Implement the lookup feature using textboxes.
+- Pull from the mcassets API to fill boxes with Minecraft textures.
+- Implement Save and Account features (after completion of PHP/MySQL).
+
+TODO for PHP & MySQL
+- Setup the database.
+- Change current method for including headers and footers to JavaScript or PHP.
+
+TODO Other
+- Create a Logo for the website/project.
+- Write a little bit for the about section.
+- Fork the mcassets hub, only including full-block textures and remove redundancies.
+- Remove acacia_log placeholder.
