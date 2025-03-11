@@ -7,16 +7,17 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://kit.fontawesome.com/63ff890171.js" crossorigin="anonymous"></script>
+        <script src="GenScript.js"></script>
     </head>
     <body class="bg-light" style="font-family: Helvetica">
         <!-- iframes are essentially their own browser windows, should implement another way -->
         <iframe src="header.html" width="100%" height="100"></iframe>
         <div class="container bg-light">
             <div class="row text-center"> <!-- Need to find a way to scale up textures if possible... -->
-                <div class="col-3 p-3"><img src="acacia_log.png" width="50%"></div>
-                <div class="col-3 p-3"><img src="acacia_log.png" width="50%"></div>
-                <div class="col-3 p-3"><img src="acacia_log.png" width="50%" height="100%"></div>
-                <div class="col-3 p-3"><img src="acacia_log.png" width="50%" height="100%"></div>
+                <div class="col-3 p-3"><img src="acacia_log.png" width="50%" id="block1" alt="missing image"></div>
+                <div class="col-3 p-3"><img src="acacia_log.png" width="50%" id="block2" alt="missing image"></div>
+                <div class="col-3 p-3"><img src="acacia_log.png" width="50%" id="block3" height="100%" alt="missing image"></div>
+                <div class="col-3 p-3"><img src="acacia_log.png" width="50%" id="block4" height="100%" alt="missing image"></div>
             </div>
             <div class="row text-center">
                 <div class="col-3"><input type="text"></div>
@@ -25,10 +26,10 @@
                 <div class="col-3"><input type="text"></div>
             </div>
             <div class="row text-center" style="font-size: 20pt">
-                <p class="col-3 p-2"><button class="btn btn-secondary"><i class="fa-solid fa-lock-open"></i></button></p>
-                <p class="col-3 p-2"><button class="btn btn-secondary"><i class="fa-solid fa-lock-open"></i></button></p>
-                <p class="col-3 p-2"><button class="btn btn-secondary"><i class="fa-solid fa-lock-open"></i></button></p>
-                <p class="col-3 p-2"><button class="btn btn-secondary"><i class="fa-solid fa-lock-open"></i></button></p>
+                <p class="col-3 p-2"><button class="btn btn-secondary" id="lock1" onclick="lockBlock(this.id, 'block1')"><i class="fa-solid fa-lock-open"></i></button></p>
+                <p class="col-3 p-2"><button class="btn btn-secondary" id="lock2" onclick="lockBlock(this.id, 'block2')"><i class="fa-solid fa-lock-open"></i></button></p>
+                <p class="col-3 p-2"><button class="btn btn-secondary" id="lock3" onclick="lockBlock(this.id, 'block3')"><i class="fa-solid fa-lock-open"></i></button></p>
+                <p class="col-3 p-2"><button class="btn btn-secondary" id="lock4" onclick="lockBlock(this.id, 'block4')"><i class="fa-solid fa-lock-open"></i></button></p>
             </div>
             <div class="row py-3 text-center">
                 <p>
