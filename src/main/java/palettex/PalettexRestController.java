@@ -34,8 +34,6 @@ public class PalettexRestController implements ErrorController {
         public static CreatePaletteResponse ofCode(long code) {
             return new CreatePaletteResponse(Type.SUCCESS, code, null);
         }
-
-
     }
 
     @GetMapping("/api/getPalette/{code}")
