@@ -1,5 +1,25 @@
+// Generates and replaces a palette on the current HTML.
 function generatePalette(){
-    // will check if blocks have locked state, then randomize ones that do not.
+    let blocks = document.getElementById("palette").childElementCount;
+    let indexes = [];
+    
+    for(let i = 0; i < blocks; i++) { // Randomization process.
+        let curBlock = document.getElementById("block" + (i + 1));
+        if(!curBlock.classList.contains("locked")) {
+            indexes[i] = Math.floor(Math.random() * 324); // 324 is the hard-coded number of textures (as of now)
+            
+            for(let j = 0; j < i; j++) { // Safety check; don't want there to be repeating textures.
+                if(indexes[i] == indexes[j]) {
+                    indexes[i] = Math.floor(Math.random() * 324);
+                    j = 0;
+                }
+                console.log("img/textures/" + textures[indexes[i]].name + ".png");
+            }
+            let boxString = textures[indexes[i]].name;
+            curBlock.setAttribute("src", "img/textures/" + boxString + ".png");
+            document.getElementById("text" + (i + 1)).value = boxString;
+        }
+    }
 }
 
 //<button onclick="lockBlock(this.id, "block1")"></button> example function call in html

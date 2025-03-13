@@ -1,5 +1,4 @@
-{
-"textures":[
+const textures = [ // Uses a global variable for convenience.
 	{"name":"acacia_leaves","clr":"86,85,85","cmp":"169,170,170"},
 	{"name":"acacia_log","clr":"103,96,86","cmp":"152,159,169"},
 	{"name":"acacia_planks","clr":"168,90,50","cmp":"87,165,205"},
@@ -225,7 +224,6 @@
 	{"name":"pink_concrete_powder","clr":"228,153,181","cmp":"27,102,74"},
 	{"name":"pink_glazed_terracotta","clr":"235,154,181","cmp":"20,101,74"},
 	{"name":"pink_stained_glass","clr":"242,127,165","cmp":"13,128,90"},
-	{"name":"pink_tulip","clr":"22,32,17","cmp":"233,223,238"},
 	{"name":"pink_wool","clr":"237,141,172","cmp":"18,114,83"},
 	{"name":"podzol","clr":"122,87,57","cmp":"133,168,198"},
 	{"name":"polished_andesite","clr":"132,134,133","cmp":"123,121,122"},
@@ -326,4 +324,3 @@
 	{"name":"yellow_terracotta","clr":"186,133,35","cmp":"69,122,220"},
 	{"name":"yellow_wool","clr":"248,197,39","cmp":"7,58,216"}
 ]
-}
