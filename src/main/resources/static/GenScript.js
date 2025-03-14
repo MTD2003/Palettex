@@ -6,11 +6,11 @@ function generatePalette(){
     for(let i = 0; i < blocks; i++) { // Randomization process.
         let curBlock = document.getElementById("block" + (i + 1));
         if(!curBlock.classList.contains("locked")) {
-            indexes[i] = Math.floor(Math.random() * 324); // 324 is the hard-coded number of textures (as of now)
+            indexes[i] = Math.floor(Math.random() * textures.length); // 324 is the hard-coded number of textures (as of now)
             
             for(let j = 0; j < i; j++) { // Safety check; don't want there to be repeating textures.
                 if(indexes[i] == indexes[j]) {
-                    indexes[i] = Math.floor(Math.random() * 324);
+                    indexes[i] = Math.floor(Math.random() * textures.length);
                     j = 0;
                 }
                 console.log("img/textures/" + textures[indexes[i]].name + ".png");
@@ -52,7 +52,15 @@ function lockBlock(ButtonId,BlockID){
     }
 }
 
-function lookup(){
-    
+// allows lookup of block type using actual name. Then sets the block as the entered type
+// format is similar to gold_block or magenta_glazed_terracotta
+function lookup(field,blockID){
+    const input = document.getElementById(field);
+    input.addEventListener("keydown", (Event) => {
+        if(Event.key === 'Enter'){
+            document.getElementById(blockID).setAttribute("src", "img/textures/" + input.value + ".png")
+        }
+    });
+
 }
 

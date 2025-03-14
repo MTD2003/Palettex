@@ -35,10 +35,10 @@
                 <div class="col-3 p-3"><img src="img/textures/bamboo_block.png" id="block4" alt="Placeholder" class="squeeze"></div>
             </div>
             <div class="row text-center">
-                <div class="col-3"><input type="text" id="text1" class="form-control mb-2"></div>
-                <div class="col-3"><input type="text" id="text2" class="form-control mb-2"></div>
-                <div class="col-3"><input type="text" id="text3" class="form-control mb-2"></div>
-                <div class="col-3"><input type="text" id="text4" class="form-control mb-2"></div>
+                <div class="col-3"><input type="text" oninput = "lookup(this.id,'block1')" id="text1" class="form-control mb-2"></div>
+                <div class="col-3"><input type="text" oninput = "lookup(this.id,'block2')" id="text2" class="form-control mb-2"></div>
+                <div class="col-3"><input type="text" oninput = "lookup(this.id,'block3')" id="text3" class="form-control mb-2"></div>
+                <div class="col-3"><input type="text" oninput = "lookup(this.id,'block4')" id="text4" class="form-control mb-2"></div>
             </div>
             <div class="row text-center fs-2">
                 <p class="col-3 p-2"><button class="btn btn-secondary" id="lock1" onclick="lockBlock(this.id, 'block1')">
