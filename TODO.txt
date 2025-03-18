@@ -3,8 +3,6 @@ TODO for HTML & CSS
 - about.html: Lowest priority in assignment.
 
 TODO for JavaScript & jQuery
-- Implement the generate button.
-- Implement the lookup feature using textboxes.
 - Create API for the palette database, populate palettes.html.
 - Implement Save and Like features (after completion of PHP/MySQL).
 -> Note that like features will be implemented with cookies.
@@ -14,5 +12,4 @@ TODO for PHP & MySQL
 - Change current method for including headers and footers to JavaScript or PHP.
 
 TODO Other
-- Create a Logo for the website/project (WIP).
 - Write a little bit for the about section (low priority).

@@ -272,7 +272,6 @@ const textures = [ // Uses a global variable for convenience.
 	{"name":"sculk_catalyst","clr":"76,93,90","cmp":"179,162,165"},
 	{"name":"sea_lantern","clr":"171,199,189","cmp":"84,56,66"},
 	{"name":"shroomlight","clr":"240,146,70","cmp":"15,109,185"},
-	{"name":"shulker_box","clr":"139,96,139","cmp":"116,159,116"},
 	{"name":"slime_block","clr":"111,192,91","cmp":"144,63,164"},
 	{"name":"smooth_basalt","clr":"72,72,78","cmp":"183,183,177"},
 	{"name":"smooth_stone","clr":"206,206,206","cmp":"49,49,49"},
