@@ -1,15 +1,15 @@
 TODO for HTML & CSS
-- palettes.html: Do the layout. Would look similar to https://www.blockpalettes.com/.
-- about.html: Lowest priority in assignment.
+- (Tye) palettes.html: Do the layout. Would look similar to https://www.blockpalettes.com/
+- (Wendy) favourites.html: Stores the users favorites based on user cookies. No API.
+-> Not necessary.
 
 TODO for JavaScript & jQuery
-- Create API for the palette database, populate palettes.html.
-- Implement Save and Like features (after completion of PHP/MySQL).
--> Note that like features will be implemented with cookies.
-
-TODO for PHP & MySQL
-- Setup the database.
-- Change current method for including headers and footers to JavaScript or PHP.
+- (Duncan) Populate palettes.html using API calls. 
+-> (Duncan) Implement Latest_ID call.
+-> (Wendy) Implement Save button with API calls.
+- (Michael) Create mechanisms for populating favourites.html. Based on user cookies, individual.
 
 TODO Other
-- Write a little bit for the about section (low priority).
+- Create a report on the Full-Stack Project (Dr. McIntyre said he'd explain what to feature).
+-> May want to bring up changes to initial planning.
+- Create a presentation based on the report (or vice versa).
