@@ -16,7 +16,7 @@
         img {
             image-rendering: pixelated; 
         }
-        body {
+        div.backdrop { 
             background-image: url("img/misc/backg.webp");
             background-attachment: fixed;
             background-position: center;
@@ -30,10 +30,11 @@
         }
         </style>
     </head>
-    <body>
+    <body class="bg-info">
+    <div class="backdrop"> <!-- Switched background image to a div instad of body to add firefox compatibility -->
         <!-- iframes are essentially their own browser windows, should implement another way -->
         <iframe src="header.html" width="100%" height="140"></iframe>
-        <div class="container py-3" id="main">
+        <div class="container py-3">
             <div class="row justify-content-center">
                 <h1 class="col-5 p-4 fs-1 text-center bg-primary text-light rounded-pill">Palette Generator</h1>
             </div>
@@ -73,5 +74,6 @@
             </div>
         </div>
         <iframe src="footer.html" width="100%" height="120"></iframe>
+    </div>
     </body>
 </html>
