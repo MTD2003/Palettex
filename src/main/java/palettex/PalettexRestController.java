@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 @RestController
@@ -15,6 +17,13 @@ public class PalettexRestController implements ErrorController {
     @PostMapping("/api/createPalette")
     public CreatePaletteResponse createPalette(@RequestParam(name = "blocks") List<String> blocks) {
         try {
+            if (blocks.size() != 4) {
+                return CreatePaletteResponse.ofError("Incorrect amount of blocks!");
+            }
+            Set<String> invalidBlocks = blocks.stream().filter(s -> !Blocks.NAMES.contains(s)).collect(Collectors.toSet());
+            if (!invalidBlocks.isEmpty()) {
+                return CreatePaletteResponse.ofError("Invalid blocks: " + String.join(", ", invalidBlocks));
+            }
             PalettexDB db = PalettexDB.getInstance();
             long id = db.insertPalette(blocks);
             return CreatePaletteResponse.ofCode(id);
