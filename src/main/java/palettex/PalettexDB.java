@@ -44,4 +44,16 @@ public class PalettexDB {
             return Optional.ofNullable(rs.getString("blocks")).map(s -> Arrays.asList(s.split(";"))).orElse(null);
         }
     }
+
+    public long getLatestPaletteId() throws SQLException {
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT id FROM palettes ORDER BY id DESC LIMIT 1" /*Get an id from palettes ordered by id descending and limited to 1*/)) {
+            if (rs.next()) {
+                return rs.getLong("id");
+            } else {
+                throw new SQLException("No palettes found.");
+            }
+        }
+    }
+
 }

@@ -70,6 +70,31 @@ public class PalettexRestController implements ErrorController {
         }
     }
 
+    @GetMapping("/api/getLatestPalette")
+    public LatestPaletteResponse getLatestPalette() {
+        try {
+            PalettexDB db = PalettexDB.getInstance();
+            long latestId = db.getLatestPaletteId();
+            return LatestPaletteResponse.ofCode(latestId);
+        } catch (SQLException e) {
+            return LatestPaletteResponse.ofError("A database error occurred: " + e);
+        }
+    }
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public record LatestPaletteResponse(Type type, Long code, String errorMessage) {
+        public enum Type {SUCCESS, ERROR}
+
+        public static LatestPaletteResponse ofError(String errorMessage) {
+            return new LatestPaletteResponse(Type.ERROR, null, errorMessage);
+        }
+
+        public static LatestPaletteResponse ofCode(long code) {
+            return new LatestPaletteResponse(Type.SUCCESS, code, null);
+        }
+    }
+
+
     @RequestMapping(value = "/error")
     public ResponseEntity<GenericResponse> error() {
         return ResponseEntity.badRequest().body(GenericResponse.ofError("Invalid path."));
