@@ -1,4 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+    <head>
+        <title>Palettex: Saved Palettes</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+        <script src="https://kit.fontawesome.com/63ff890171.js" crossorigin="anonymous"></script>
+        <script src="pscript.js"></script>
+        <style>
+            div {
+                font-family: 'Trebuchet MS';
+            }
+            img {
+                image-rendering: pixelated; 
+            }
+            div.backdrop { 
+                background-image: url("img/misc/backg.webp");
+                background-attachment: fixed;
+                background-position: center;
+                background-blend-mode: lighten;
+                background-color: rgba(255, 255, 255, 0.65);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .squeeze {
+                width: 80%;
+            }
+            div.headerAndButton{
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+                position: relative;
+
+            }
+            table, tbody, th, thead, tr, td {
+                opacity: 0.6;
+            }
+
+            td img {
+                opacity: 1;
+            }
+        </style>
+    </head>
+
+    <body class="bg-light">
+        <!-- iframes are essentially their own browser windows, should implement another way -->
+        
+        <div class="container backdrop">
+            <iframe src="header.html" width="100%" height="140"></iframe>
+
+            <!--this is a lot of css stuff from collaborated from like 20 different websites.
+            if there is a better way to do this, please find it. I don't know what it would be.-->
+            <div class="headerAndButton">
+                <H1 style="margin: 0;">Saved Palettes</H1> 
+                <button class="btn btn-secondary" style="position: absolute; right: 0;" onclick="deleteAuth('SPT')">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+            
+            <!--SPT stands for saved palette table, ID is used for ease of access when writing js for this
+            I believe that js can be used to actually build the table as well alongside db access-->
+            <div>
+                <table class="table table-borderless">
+                    <tbody id="SPT">
+                        <tr><td></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row py-4 text-center">
+                <p>
+                    <button class="btn btn-secondary">Show More</button>
+                </p>
+            </div>
+            <iframe src="footer.html" width="100%" height="120"></iframe>
+        </div>
+        
+    </body>
 </html>
