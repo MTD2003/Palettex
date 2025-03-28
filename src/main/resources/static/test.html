@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>API Test Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="api.js"></script>
+</head>
+
+<body>
+    <h3>Insert Palette</h3>
+    <input type="text" id="block1" placeholder="Block 1">
+    <input type="text" id="block2" placeholder="Block 2">
+    <input type="text" id="block3" placeholder="Block 3">
+    <input type="text" id="block4" placeholder="Block 4">
+    <button onclick="insertPalette()">Insert</button>
+    <div id="insertResult"></div>
+
+    <h3>Get Palette</h3>
+    <input type="text" id="paletteCode" placeholder="Palette Code">
+    <button onclick="getPalette()">Get</button>
+    <div id="getPaletteResult"></div>
+
+    <h3>Get Latest Palette</h3>
+    <button onclick="getLatestPalette()">Get Latest</button>
+    <div id="getLatestPaletteResult"></div>
+
+    <script>
+        function insertPalette() {
+            let blocks = [
+                $('#block1').val(),
+                $('#block2').val(),
+                $('#block3').val(),
+                $('#block4').val()
+            ];
+            apiInsertPalette(blocks,
+                (data) => $('#insertResult').text(JSON.stringify(data)),
+                (err) => $('#insertResult').text('Error: ' + err.responseText));
+        }
+
+        function getPalette() {
+            let code = $('#paletteCode').val();
+            apiGetPalette(code,
+                (data) => $('#getPaletteResult').text(JSON.stringify(data)),
+                (err) => $('#getPaletteResult').text('Error: ' + err.responseText));
+        }
+
+        function getLatestPalette() {
+            apiGetLatestPalette(
+                (data) => $('#getLatestPaletteResult').text(JSON.stringify(data)),
+                (err) => $('#getLatestPaletteResult').text('Error: ' + err.responseText));
+        }
+    </script>
+</body>
+
+</html>
