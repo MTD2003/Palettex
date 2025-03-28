@@ -5,6 +5,7 @@
     <title>API Test Page</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="api.js"></script>
+    <script src="favourite_cookies.js"></script>
 </head>
 
 <body>
@@ -24,6 +25,14 @@
     <h3>Get Latest Palette</h3>
     <button onclick="getLatestPalette()">Get Latest</button>
     <div id="getLatestPaletteResult"></div>
+
+    <h3>Favourite Palettes</h3>
+    <input type="text" id="favouriteCode" placeholder="Palette Code">
+    <button onclick="addFavourite()">Add Favourite</button>
+    <button onclick="removeFavourite()">Remove Favourite</button>
+    <button onclick="checkFavourite()">Check Favourite</button>
+    <button onclick="listFavourites()">List Favourites</button>
+    <div id="favouriteResult"></div>
 
     <script>
         function insertPalette() {
@@ -49,6 +58,34 @@
             apiGetLatestPalette(
                 (data) => $('#getLatestPaletteResult').text(JSON.stringify(data)),
                 (err) => $('#getLatestPaletteResult').text('Error: ' + err.responseText));
+        }
+
+        function addFavourite() {
+            let code = parseInt($('#favouriteCode').val());
+            if (code) {
+                addFavouritePalette(code);
+                $('#favouriteResult').text('Added to favourites');
+            }
+        }
+
+        function removeFavourite() {
+            let code = parseInt($('#favouriteCode').val());
+            if (code) {
+                removeFavouritePalette(parseInt(code));
+                $('#favouriteResult').text('Removed from favourites');
+            }
+        }
+
+        function checkFavourite() {
+            let code = parseInt($('#favouriteCode').val());
+            if (code) {
+                let result = isFavouritePalette(parseInt(code));
+                $('#favouriteResult').text(result ? 'Is a favourite' : 'Not a favourite');
+            }
+        }
+
+        function listFavourites() {
+            $('#favouriteResult').text(JSON.stringify(getFavouritePalettes()));
         }
     </script>
 </body>
