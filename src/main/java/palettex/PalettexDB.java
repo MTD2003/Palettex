@@ -3,6 +3,7 @@ package palettex;
 import java.sql.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class PalettexDB {
     private static final String DB_URL = "jdbc:sqlite:palettes.db";
@@ -40,7 +41,7 @@ public class PalettexDB {
         try (PreparedStatement pstmt = connection.prepareStatement("SELECT blocks FROM palettes WHERE id = ?")) {
             pstmt.setLong(1, paletteCode);
             ResultSet rs = pstmt.executeQuery();
-            return Arrays.asList(rs.getString("blocks").split(";"));
+            return Optional.ofNullable(rs.getString("blocks")).map(s -> Arrays.asList(s.split(";"))).orElse(null);
         }
     }
 }
