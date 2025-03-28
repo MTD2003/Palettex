@@ -1,4 +1,4 @@
-function apiInsertPalette(blocks, onSuccess, onError) {
+function apiCreatePalette(blocks, onSuccess, onError) {
     $.ajax({
         url: "/api/createPalette",
         method: "POST",

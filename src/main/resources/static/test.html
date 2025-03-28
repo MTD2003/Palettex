@@ -42,7 +42,7 @@
                 $('#block3').val(),
                 $('#block4').val()
             ];
-            apiInsertPalette(blocks,
+            apiCreatePalette(blocks,
                 (data) => $('#insertResult').text(JSON.stringify(data)),
                 (err) => $('#insertResult').text('Error: ' + err.responseText));
         }
