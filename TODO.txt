@@ -1,12 +1,9 @@
 TODO for HTML & CSS
-- (Tye) palettes.html: Do the layout. Would look similar to https://www.blockpalettes.com/
 - (Wendy) favourites.html: Stores the users favorites based on user cookies. No API.
 -> Not necessary.
 
 TODO for JavaScript & jQuery
-- (Duncan) Populate palettes.html using API calls. 
--> (Duncan) Implement Latest_ID call.
--> (Wendy) Implement Save button with API calls.
+- (Wendy) Implement Save button with API calls.
 - (Michael) Create mechanisms for populating favourites.html. Based on user cookies, individual.
 
 TODO Other
