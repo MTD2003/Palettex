@@ -47,7 +47,6 @@ async function fillPalettes(lastPalette) {
 
     const endCode = Math.max(0, sCode - 12);
     const spt = document.getElementById("spt"); // SPT stands for saved palette tables, encompassing box.
-    let newHTML = ``;
     let favBtn = ``;
 
     for(; sCode > endCode; sCode--) {
@@ -81,6 +80,7 @@ async function fillPalettes(lastPalette) {
             },
             (err) => window.alert("Error: " + err.responseText)
         );
+        await new Promise(resolve => setTimeout(resolve, 50)); // Best way I could find to ensure the loops were synchronized.
     }
 
     // TODO: Show more button implementation here.
