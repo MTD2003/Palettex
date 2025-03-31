@@ -41,9 +41,17 @@ function deleteItem(tabId){
     
 }
 
+// Fills the palettes page. Called on page load.
+// Takes into account the "start" parameter using URLSearchParams.get
 async function fillPalettes(lastPalette) {
     const parse = lastPalette.split(":"); // Need to parse the stringify ourselves as JSON.parse doesn't work.
+    const urlParams = new URLSearchParams(window.location.search);
+    const newStart = urlParams.get("start"); // Gets the start parameter from the URL.
     let sCode = parseInt(parse[2]);
+
+    if(newStart) { // If the start value is valid, replace sCode with it (unless it is too high).
+        sCode = Math.min(sCode, newStart);
+    }
 
     const endCode = Math.max(0, sCode - 12);
     const spt = document.getElementById("spt"); // SPT stands for saved palette tables, encompassing box.
@@ -82,8 +90,15 @@ async function fillPalettes(lastPalette) {
         );
         await new Promise(resolve => setTimeout(resolve, 50)); // Best way I could find to ensure the loops were synchronized.
     }
-
-    // TODO: Show more button implementation here.
+    
+    if(sCode > 0) { // Add the show more button.
+        document.getElementById("next").innerHTML += `
+        <form class="text-center" action="palettes.html" method="get">
+            <input type="hidden" name="start" value="${sCode}">
+            <button class="col-3 fs-5 btn btn-secondary" type="submit">Show More</button>
+        </form>
+        `;
+    }
 }
 
 window.addEventListener("load", (event) => {
