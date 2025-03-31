@@ -18,29 +18,6 @@ function faveSelect(faveID) {
     }
 }
 
-function deleteAuth(tabId){
-    const pass = "placeholder"; //I want to use the edit password for the db, without having it shown. How do?
-    const enteredPass = prompt("enter password to delete");
-        if(enteredPass === pass){
-            const table = document.getElementById(tabId);
-            for(let i = 0; i < table.rows.length; i++){
-                let row = table.rows[i];
-                for(let j = 0; j< row.cells.length; j++){
-                    let indivPalette = row.cells[j];
-                    indivPalette.innerHTML += '<button class="btn btn-secondary" onclick="delete(${tabId})"><i class="fa-solid fa-trash-can"></i></button>';
-                }
-            }
-        }
-        else{
-            alert("incorrect authentication");
-        }
-}
-// I don't know how to do API calls
-function deleteItem(tabId){
-    const table = document.getElementById("SPT");
-    
-}
-
 // Fills the palettes page. Called on page load.
 // Takes into account the "start" parameter using URLSearchParams.get
 async function fillPalettes(lastPalette) {
@@ -80,15 +57,15 @@ async function fillPalettes(lastPalette) {
                 spt.innerHTML += `
                 <div id="${sCode}" class="col-3 text-center rounded bg-info m-4 py-3">
                     <h3 class="fs-4 py-1">Palette #${sCode}</h3>
-                    <img src="img/textures/${tblock[0]}.png" alt="Placeholder" class="squeeze"><img src="img/textures/${tblock[1]}.png" alt="Placeholder" class="squeeze"><br>
-                    <img src="img/textures/${tblock[2]}.png" alt="Placeholder" class="squeeze"><img src="img/textures/${tblock[3]}.png" alt="Placeholder" class="squeeze">
+                    <img src="img/textures/${tblock[0]}.png" alt="${tblock[0]}" class="squeeze"><img src="img/textures/${tblock[1]}.png" alt="${tblock[1]}" class="squeeze"><br>
+                    <img src="img/textures/${tblock[2]}.png" alt="${tblock[2]}" class="squeeze"><img src="img/textures/${tblock[3]}.png" alt="${tblock[3]}" class="squeeze">
                     ${favBtn}
                 </div>
                 `;
             },
             (err) => window.alert("Error: " + err.responseText)
         );
-        await new Promise(resolve => setTimeout(resolve, 50)); // Best way I could find to ensure the loops were synchronized.
+        await new Promise(resolve => setTimeout(resolve, 70)); // Best way I could find to ensure the loops were synchronized.
     }
     
     if(sCode > 0) { // Add the show more button.

@@ -37,6 +37,7 @@ function generatePalette() {
 function onPaletteChange() {
     paletteId = null;
     saveButtonAvailable("Save");
+    document.getElementById("bfave").classList.remove("faved");
     document.getElementById("bfave").innerHTML =
         'Favourite <i class="fa-regular fa-heart"></i>';
 }
@@ -92,12 +93,9 @@ function lookup(field, blockID) {
         if (Event.key === "Enter") {
             if (textures.find((o) => o.name === input.value) != undefined) {
                 // In case the user enters an invalid name.
-                document
-                    .getElementById(blockID)
-                    .setAttribute(
-                        "src",
-                        "img/textures/" + input.value + ".png"
-                    );
+                const block = document.getElementById(blockID);
+                block.setAttribute("src", "img/textures/" + input.value + ".png");
+                block.setAttribute("alt", input.value);
                 onPaletteChange();
             }
         }
@@ -105,7 +103,6 @@ function lookup(field, blockID) {
 }
 
 // Saves the current block palette to the database if it's not already there.
-// Stopping duplicate palettes from being saved may be possible, but that would be at leasat O(N) complex and require asynchronous calls.
 function savePalette() {
     // Check if already saved
     if (paletteId) {
@@ -168,13 +165,34 @@ function saveButtonUnavailable(text) {
 }
 
 // Adds the current palette to the users favourites using cookies.
-function favePalette() {}
+async function favePalette() {
+    const favBtn = document.getElementById("bfave");
+    if(!(paletteId)) {
+        savePalette();
+        await new Promise(resolve => setTimeout(resolve, 300)); // Lazy solution: Wait as we save the palette.
+    }
+    
+    if(favBtn.classList.contains("faved")) { 
+        removeFavouritePalette(paletteId);
+        favBtn.classList.remove("faved");
+        favBtn.innerHTML = `
+            Favourite <i class="fa-regular fa-heart"></i>`;
+        return;
+    }
+
+    addFavouritePalette(paletteId);
+    favBtn.classList.add("faved");
+    favBtn.innerHTML = `
+        Unfavourite <i class="fa-solid fa-heart"></i>`;
+    return;
+}
 
 // Sets a block on the page
 function setBlock(num, block) {
-    console.log("Setting " + num + " to " + block);
+    //console.log("Setting " + num + " to " + block);
     $("#text" + num).val(block);
     $("#block" + num).attr("src", "img/textures/" + block + ".png");
+    $("#block" + num).attr("alt", block);
 }
 
 $(document).ready(function () {
@@ -195,6 +213,13 @@ $(document).ready(function () {
                 alert("Failed to load palette with code " + code);
             }
         );
+        // Bug: This code just doesn't work sometimes. 90% sure it has to do with page loading.
+        if(isFavouritePalette(code.toString())) {
+            const favBtn = document.getElementById("bfave");
+            favBtn.classList.add("faved");
+            favBtn.innerHTML = `
+                Unfavourite <i class="fa-solid fa-heart"></i>`;
+        }
     }
 
     $("#copyLinkBtn").click(function () {
