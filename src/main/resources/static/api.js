@@ -1,30 +1,33 @@
 function apiCreatePalette(blocks, onSuccess, onError) {
-    $.ajax({
+    const request = $.ajax({
         url: "/api/createPalette",
         method: "POST",
         data: { blocks },
         dataType: "json",
-        success: onSuccess,
-        error: onError,
     });
+    if (onSuccess) request.done(onSuccess);
+    if (onError) request.fail(onError);
+    return request;
 }
 
 function apiGetPalette(code, onSuccess, onError) {
-    $.ajax({
+    const request = $.ajax({
         url: `/api/getPalette/${code}`,
         method: "GET",
         dataType: "json",
-        success: onSuccess,
-        error: onError,
     });
+    if (onSuccess) request.done(onSuccess);
+    if (onError) request.fail(onError);
+    return request;
 }
 
 function apiGetLatestPalette(onSuccess, onError) {
-    $.ajax({
+    const request = $.ajax({
         url: "/api/getLatestPalette",
         method: "GET",
         dataType: "json",
-        success: onSuccess,
-        error: onError,
     });
+    if (onSuccess) request.done(onSuccess);
+    if (onError) request.fail(onError);
+    return request;
 }
