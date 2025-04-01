@@ -1,5 +1,6 @@
 // Current palette
 let paletteId = null;
+let favouriteOnSave = false;
 
 // Generates and replaces a palette on the current HTML.
 function generatePalette() {
@@ -94,7 +95,10 @@ function lookup(field, blockID) {
             if (textures.find((o) => o.name === input.value) != undefined) {
                 // In case the user enters an invalid name.
                 const block = document.getElementById(blockID);
-                block.setAttribute("src", "img/textures/" + input.value + ".png");
+                block.setAttribute(
+                    "src",
+                    "img/textures/" + input.value + ".png"
+                );
                 block.setAttribute("alt", input.value);
                 onPaletteChange();
             }
@@ -125,11 +129,13 @@ function savePalette() {
             saveButtonAvailable("Saved");
             paletteId = data["code"];
             showSavedPopup();
+            if (favouriteOnSave) favePalette();
         },
         (err) => {
             window.alert("Error: " + err.responseText);
             saveButtonAvailable("Save");
             paletteId = null;
+            favouriteOnSave = false;
         }
     );
 
@@ -167,12 +173,14 @@ function saveButtonUnavailable(text) {
 // Adds the current palette to the users favourites using cookies.
 async function favePalette() {
     const favBtn = document.getElementById("bfave");
-    if(!(paletteId)) {
+    if (!paletteId) {
+        favouriteOnSave = true;
         savePalette();
-        await new Promise(resolve => setTimeout(resolve, 300)); // Lazy solution: Wait as we save the palette.
+        return;
     }
-    
-    if(favBtn.classList.contains("faved")) { 
+    favouriteOnSave = false;
+
+    if (favBtn.classList.contains("faved")) {
         removeFavouritePalette(paletteId);
         favBtn.classList.remove("faved");
         favBtn.innerHTML = `
@@ -195,32 +203,38 @@ function setBlock(num, block) {
     $("#block" + num).attr("alt", block);
 }
 
+function loadCode(code) {
+    if (!code) return;
+    try {
+        code = parseInt(code);
+    } catch (e) {
+        alert("Invalid palette code " + code);
+        return;
+    }
+    apiGetPalette(
+        code,
+        (data) => {
+            console.log(data["blocks"]);
+            for (let i = 0; i < data["blocks"].length; i++) {
+                setBlock(i + 1, data["blocks"][i]);
+            }
+            saveButtonAvailable("Saved");
+            paletteId = code;
+        },
+        (err) => {
+            alert("Failed to load palette with code " + code);
+        }
+    );
+    if (isFavouritePalette(code)) {
+        const favBtn = document.getElementById("bfave");
+        favBtn.classList.add("faved");
+        favBtn.innerHTML = `Unfavourite <i class="fa-solid fa-heart"></i>`;
+    }
+}
+
 $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
-    let code = urlParams.get("code");
-    if (code) {
-        apiGetPalette(
-            code,
-            (data) => {
-                console.log(data["blocks"]);
-                for (let i = 0; i < data["blocks"].length; i++) {
-                    setBlock(i + 1, data["blocks"][i]);
-                }
-                saveButtonAvailable("Saved");
-                paletteId = code;
-            },
-            (err) => {
-                alert("Failed to load palette with code " + code);
-            }
-        );
-        // Bug: This code just doesn't work sometimes. 90% sure it has to do with page loading.
-        if(isFavouritePalette(code.toString())) {
-            const favBtn = document.getElementById("bfave");
-            favBtn.classList.add("faved");
-            favBtn.innerHTML = `
-                Unfavourite <i class="fa-solid fa-heart"></i>`;
-        }
-    }
+    loadCode(urlParams.get("code"));
 
     $("#copyLinkBtn").click(function () {
         navigator.clipboard
