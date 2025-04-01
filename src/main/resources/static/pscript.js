@@ -72,8 +72,8 @@ async function fillPalettes(sCode) {
         // Add the show more button.
         document.getElementById("next").innerHTML += `
         <form class="text-center" action="palettes.html" method="get">
-            <input type="hidden" name="start" value="${sCode}">
-            <button class="col-3 fs-5 btn btn-secondary" type="submit">Show More</button>
+            <input type="hidden" name="start" value="${endCode}">
+            <button class="col-3 fs-5 btn btn-light" type="submit">Show More</button>
         </form>
         `;
     }

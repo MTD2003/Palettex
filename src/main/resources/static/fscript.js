@@ -4,17 +4,18 @@ function dropFavourite(btnID) {
     const code = parseInt(parent.getAttribute("id"));
     removeFavouritePalette(code);
     parent.remove();
+
+    if(getFavouritePalettes().length <= 0) {
+        printInstructions();
+    }
+    return;
 }
 
 // Fills the favourite page.
 // Acts near identical to fillPalettes in pscript.js.
 async function fillFavourites(faves) {
     if (faves.length <= 0) {
-        document.getElementById("fpt").innerHTML = `
-        <div class="no-favorites col-8">
-            <h2>No Favourites Yet</h2>
-            <p>Visit the generator and click the <i class="fa-regular fa-heart text-danger"></i> to save palettes here.</p>
-        </div>`;
+        printInstructions();
         return;
     }
 
@@ -40,6 +41,14 @@ async function fillFavourites(faves) {
         `;
     }
     return;
+}
+
+function printInstructions() {
+    document.getElementById("fpt").innerHTML = `
+    <div class="no-favorites col-8">
+        <h2>No Favourites Yet</h2>
+        <p>Visit the generator and click the <i class="fa-regular fa-heart text-danger"></i> to save palettes here.</p>
+    </div>`;
 }
 
 window.addEventListener("load", (event) => {
