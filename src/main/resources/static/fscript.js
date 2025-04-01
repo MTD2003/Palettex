@@ -20,7 +20,7 @@ async function fillFavourites(faves) {
     }
 
     const fpt = document.getElementById("fpt");
-    for(let i = faves.length - 1; 0 < i; i--) {
+    for(let i = faves.length - 1; 0 <= i; i--) {
         apiGetPalette(faves[i],
             (data) => {
                 let blocks = data["blocks"];
