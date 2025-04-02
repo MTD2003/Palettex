@@ -34,8 +34,8 @@ async function fillFavourites(faves) {
             <h3 class="fs-4 py-1">Palette #${faves[i]}</h3>
             <img src="img/textures/${blocks[0]}.png" alt="${blocks[0]}" class="squeeze"><img src="img/textures/${blocks[1]}.png" alt="${blocks[1]}" class="squeeze"><br>
             <img src="img/textures/${blocks[2]}.png" alt="${blocks[2]}" class="squeeze"><img src="img/textures/${blocks[3]}.png" alt="${blocks[3]}" class="squeeze">
-            <button id="${faves[i]}-btn" class="btn btn-primary mt-2" style="width: 90%;" onclick="dropFavourite(this.id)">
-                Remove <i class="fa-solid fa-heart-crack"></i>
+            <button id="${faves[i]}-btn" class="btn btn-danger mt-2" style="width: 90%;" onclick="dropFavourite(this.id)">
+                Unfavourite <i class="fa-solid fa-heart"></i>
             </button>
         </div>
         `;
