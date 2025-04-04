@@ -236,14 +236,14 @@ $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
     loadCode(urlParams.get("code"));
 
-    $("#copyLinkBtn").click(function () {
-        navigator.clipboard
-            .writeText(
+    $("#copyLinkBtn").click(async function () {
+        try {
+            await navigator.clipboard.writeText(
                 `${window.location.origin}/generator.html?code=${paletteId}`
-            )
-            .catch(function (error) {
-                console.error("Copy failed", error);
-            });
+            );
+        } catch (error) {
+            console.error("Copy failed", error);
+        }
     });
 
     $(document).click(function (event) {
